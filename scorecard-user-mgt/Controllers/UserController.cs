@@ -16,7 +16,7 @@ namespace scorecard_user_mgt.Controllers
     {
         private readonly IUserService _userService;
 
-        public UserController(IUserRepository userRepository, IUserService userService)
+        public UserController(IUserService userService)
         {
             _userService = userService;
         }
