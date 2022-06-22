@@ -191,8 +191,7 @@ UpgradeLog*.htm
 *.bim.layout
 *.bim_*.settings
 
-RentalCarApi/appsettings.json
-RentalCarApi/appsettings.[Dd]evelopment.json
-RentalCarApi/Logs.txt
+scorecard-user-mgt/appsettings.json
+scorecard-user-mgt/appsettings.[Dd]evelopment.json
 
 # End of https://www.gitignore.io/api/visualstudio
