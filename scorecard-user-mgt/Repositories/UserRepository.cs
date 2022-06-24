@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using scorecard_user_mgt.Data;
 using scorecard_user_mgt.Models;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,9 +9,11 @@ namespace scorecard_user_mgt.Repositories
     public class UserRepository : IUserRepository
     {
         private readonly AppDbContext _dbContext;
+        private readonly DbSet<User> _dbSet;
         public UserRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
+            _dbSet = _dbContext.Set<User>();
         }
         public async Task<List<User>> CreateUserAsync(User user)
         {
@@ -20,41 +21,24 @@ namespace scorecard_user_mgt.Repositories
             await _dbContext.SaveChangesAsync();
             return await _dbContext.Users.ToListAsync();
         }
-
-        public async Task<List<User>> DeleteUserAsync(int id)
+        public async Task<bool> Delete(User request)
         {
-            var dbUser = await _dbContext.Users.FindAsync(id);
-            _dbContext.Users.Remove(dbUser);
-            await _dbContext.SaveChangesAsync();
-            return await _dbContext.Users.ToListAsync();
+            _dbSet.Remove(request);
+            return await _dbContext.SaveChangesAsync() > 0;
         }
-
         public async Task<List<User>> GetAllUsersAsync()
         {
             return await _dbContext.Users.ToListAsync();
         }
-
-        public async Task<User> GetUserByIdAsync(int id)
+        public async Task<User> GetUserByIdAsync(string id)
         {
             var user = await _dbContext.Users.FindAsync(id);
             return user;
         }
-
-        public async Task<List<User>> UpdateUserAsync(User request)
+        public async Task<bool> UpdateUserAsync(User request)
         {
-            var dbUser = await _dbContext.Users.FindAsync(request.Id);
-            if (dbUser == null)
-            {
-                throw new ArgumentException("Resource not found");
-            }
-            dbUser.FirstName = request.FirstName;
-            dbUser.LastName = request.LastName;
-            dbUser.PhoneNumber = request.PhoneNumber;
-            dbUser.Email = request.Email;
-
-            await _dbContext.SaveChangesAsync();
-
-            return await _dbContext.Users.ToListAsync();
+            _dbSet.Update(request);
+            return await _dbContext.SaveChangesAsync() > 0;
         }
     }
 }

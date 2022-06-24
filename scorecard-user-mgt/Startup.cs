@@ -1,21 +1,18 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using scorecard_user_mgt.Data;
+using scorecard_user_mgt.DTOs.Mapping;
 using scorecard_user_mgt.Interfaces;
+using scorecard_user_mgt.Models;
 using scorecard_user_mgt.Repositories;
 using scorecard_user_mgt.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using static scorecard_user_mgt.Seeders;
 
 namespace scorecard_user_mgt
 {
@@ -37,6 +34,17 @@ namespace scorecard_user_mgt
             });
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IImageService, ImageService>();
+            services.AddAutoMapper(typeof(UserMappings));
+            services.Configure<ImageUploadSettings>(Configuration.GetSection("ImageUploadSettings"));
+           
+            services.AddDefaultIdentity<User>()
+            .AddRoles<IdentityRole>()
+            .AddEntityFrameworkStores<AppDbContext>();
+            var imageUploadConfig = Configuration
+                .GetSection("ImageUploadSettings")
+                .Get<ImageUploadSettings>();
+            services.AddSingleton(imageUploadConfig);
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -45,7 +53,8 @@ namespace scorecard_user_mgt
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, RoleManager<IdentityRole> roleManager,
+            UserManager<User> userManager, AppDbContext dbContext)
         {
             if (env.IsDevelopment())
             {
@@ -59,6 +68,7 @@ namespace scorecard_user_mgt
             app.UseRouting();
 
             app.UseAuthorization();
+            Seeder.Seed(userManager, dbContext).GetAwaiter().GetResult();
 
             app.UseEndpoints(endpoints =>
             {
