@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mLXPT8Mn2868TIBuC2EbDZEaHhI1pOASX2HdhLzYDS+dyR3uuvESMbKuvCVSB1HDFfW9zC+uRslMib0nxUbY9A==",
+  "dgSpecHash": "2xIV0GFZZ/h7d5FbG6cOUaSYquIu4bew3h5n1Ut4bLcBju0XiSAJWxSZsuDTi64lHxmzGilqB/RESY6UBe7aPQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\hp\\Desktop\\scorecard-project\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
+  "projectFilePath": "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\hp\\.nuget\\packages\\automapper\\11.0.1\\automapper.11.0.1.nupkg.sha512",
     "C:\\Users\\hp\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

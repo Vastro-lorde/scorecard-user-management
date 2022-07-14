@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Desktop\\scorecard-project\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj": {}
+    "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Desktop\\scorecard-project\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj": {
+    "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Desktop\\scorecard-project\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
         "projectName": "scorecard-user-mgt",
-        "projectPath": "C:\\Users\\hp\\Desktop\\scorecard-project\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
+        "projectPath": "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Desktop\\scorecard-project\\scorecard-user-mgt\\scorecard-user-mgt\\obj\\",
+        "outputPath": "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
           "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -111,7 +107,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
