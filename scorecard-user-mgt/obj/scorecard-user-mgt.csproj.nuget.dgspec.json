@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj": {}
+    "C:\\Users\\hp\\source\\repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj": {}
   },
   "projects": {
-    "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj": {
+    "C:\\Users\\hp\\source\\repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
+        "projectUniqueName": "C:\\Users\\hp\\source\\repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
         "projectName": "scorecard-user-mgt",
-        "projectPath": "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
+        "projectPath": "C:\\Users\\hp\\source\\repos\\scorecard-user-mgt\\scorecard-user-mgt\\scorecard-user-mgt.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\hp\\Source\\Repos\\scorecard-user-mgt\\scorecard-user-mgt\\obj\\",
+        "outputPath": "C:\\Users\\hp\\source\\repos\\scorecard-user-mgt\\scorecard-user-mgt\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,10 +40,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "AutoMapper": {
-              "target": "Package",
-              "version": "[11.0.1, )"
-            },
             "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[11.0.0, )"
@@ -52,9 +48,13 @@
               "target": "Package",
               "version": "[1.18.1, )"
             },
-            "Microsoft.AspNetCore.Identity": {
+            "MailKit": {
               "target": "Package",
-              "version": "[2.2.0, )"
+              "version": "[3.3.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -64,25 +64,17 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
-            "Microsoft.EntityFrameworkCore": {
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
-            "Microsoft.EntityFrameworkCore.Design": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[5.0.17, )"
-            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.17, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
               "target": "Package",
-              "version": "[5.0.17, )"
+              "version": "[1.14.0, )"
+            },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[3.3.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

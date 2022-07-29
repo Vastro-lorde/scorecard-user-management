@@ -53,8 +53,8 @@ namespace scorecard_user_mgt.Controllers
             return Ok(await _userService.RegisterAsync(registrationRequest));
         }
 
-        [HttpPut("UpdateUser")]
-        public async Task<IActionResult> UpdateUser(string Id, UpdateUserDto updateUserdDto)
+        [HttpPut("UpdateUserBy/{id}")]
+        public async Task<IActionResult> UpdateUser(string id, UpdateUserDto updateUserdDto)
         {
             try
             { 
@@ -65,7 +65,7 @@ namespace scorecard_user_mgt.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    var result = await _userService.UpdateUserDetails(Id, updateUserdDto);
+                    var result = await _userService.UpdateUserDetails(id, updateUserdDto);
                     return Ok(result);
                 }
                 return BadRequest(ModelState);

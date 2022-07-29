@@ -12,6 +12,7 @@ using scorecard_user_mgt.Interfaces;
 using scorecard_user_mgt.Models;
 using scorecard_user_mgt.Repositories;
 using scorecard_user_mgt.Services;
+using scorecard_user_mgt.Services.Extensions;
 using static scorecard_user_mgt.Seeders;
 
 namespace scorecard_user_mgt
@@ -32,12 +33,21 @@ namespace scorecard_user_mgt
             {
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            // Add Jwt Authentication and Authorization
+            services.ConfigureAuthentication(Configuration);
+
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITokenGen, TokenGen>();
+            services.AddScoped<IAuthServices, AuthServices>();
+            services.AddScoped<IConfirmationMailService, ConfirmationMailService>();
+            services.AddScoped<IMailService, MailService>();
             services.AddScoped<IImageService, ImageService>();
             services.AddAutoMapper(typeof(UserMappings));
             services.Configure<ImageUploadSettings>(Configuration.GetSection("ImageUploadSettings"));
-           
+            services.Configure<MailSettings>(Configuration.GetSection("MailSetting"));
+
             services.AddDefaultIdentity<User>()
             .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<AppDbContext>();
@@ -45,10 +55,41 @@ namespace scorecard_user_mgt
                 .GetSection("ImageUploadSettings")
                 .Get<ImageUploadSettings>();
             services.AddSingleton(imageUploadConfig);
+            services.AddCors(e => e.AddDefaultPolicy(builder => builder
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            ));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "scorecard_user_mgt", Version = "v1" });
+               
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Description = "Enter 'Bearer' [space] and then your valid token in the input below. \r\n\r\n Example : 'Bearer 124fsfs'"
+                }
+                );
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
+
             });
         }
 
@@ -66,9 +107,9 @@ namespace scorecard_user_mgt
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors();
             app.UseAuthorization();
-            Seeder.Seed(userManager, dbContext).GetAwaiter().GetResult();
+            Seeder.Seed(roleManager, userManager, dbContext).GetAwaiter().GetResult();
 
             app.UseEndpoints(endpoints =>
             {
