@@ -31,7 +31,7 @@ namespace scorecard_user_mgt
         {
             services.AddDbContext<AppDbContext>(options =>
             {
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.UseNpgsql(Configuration.GetConnectionString("PostgreSQL"));
             });
 
             // Add Jwt Authentication and Authorization
