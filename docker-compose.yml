@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  scorecard-user-mgt:
+    image: ${DOCKER_REGISTRY-}scorecardusermgt
+    build:
+      context: .
+      dockerfile: scorecard-user-mgt/Dockerfile
+    ports:
+       - "5455:80"
+  postgresql_database:
+    image: postgres
+    environment:
+       - POSTGRES_USER=postgres
+       - POSTGRES_PASSWORD=12345
+       - POSTGRES_DB=UserMgtDb
+    ports:
+       - "5433:5433"
+    restart: unless-stopped
+    volumes:
+       - database-data2:/var/lib/postgresql/data2/
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+        PGADMIN_DEFAULT_EMAIL: pgadmin4@pgadmin.org
+        PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+       - "5251:80"
+    restart: always
+    volumes:
+       - pgadmin:/root/.pgadmin/
+
+volumes:
+  database-data2:
+  pgadmin:
