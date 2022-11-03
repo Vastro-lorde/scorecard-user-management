@@ -5,7 +5,6 @@
     <RootNamespace>scorecard_user_mgt</RootNamespace>
     <UserSecretsId>785f1d5c-8f4d-4e84-9b31-94a38a5164f8</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
   </PropertyGroup>
 
   <ItemGroup>
